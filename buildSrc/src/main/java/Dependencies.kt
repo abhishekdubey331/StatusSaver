@@ -25,6 +25,10 @@ object SupportLibs {
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APPCOMPAT}"
     const val ANDROIDX_CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
+    const val ANDROID_NAV_ARCH_FRG_KTX = "android.arch.navigation:navigation-fragment-ktx:1.0.0"
+    const val ANDROID_NAV_ARCH_UI_KTX = "android.arch.navigation:navigation-ui-ktx:1.0.0"
+    const val ANDROID_NAV_LEGACY_SUPP = "androidx.legacy:legacy-support-v4:1.0.0"
+
 }
 
 object TestingLib {

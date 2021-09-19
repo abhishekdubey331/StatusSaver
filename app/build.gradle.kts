@@ -51,9 +51,9 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
-    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
-    implementation("android.arch.navigation:navigation-ui-ktx:1.0.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(SupportLibs.ANDROID_NAV_ARCH_FRG_KTX)
+    implementation(SupportLibs.ANDROID_NAV_ARCH_UI_KTX)
+    implementation(SupportLibs.ANDROID_NAV_LEGACY_SUPP)
 
     testImplementation(TestingLib.JUNIT)
 
