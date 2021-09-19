@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.template.library
+package com.technogeeks.statussaver.library
 
 object FactorialCalculator {
 

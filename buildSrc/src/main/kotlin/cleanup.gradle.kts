@@ -26,7 +26,7 @@ tasks.register("templateCleanup") {
         "rootProject.name = (\"$name\")"
     )
     file("buildSrc/src/main/java/Coordinates.kt").replace(
-        "com.ncorti.kotlin.template",
+        "com.technogeeks.statussaver",
         "com.github.$owner.$name"
     )
 
@@ -91,7 +91,7 @@ fun changePackageName(owner: String, name: String) {
         it.walk().filter {
             it.isFile && (it.extension == "kt" || it.extension == "kts"  || it.extension == "xml")
         }.forEach {
-            it.replace("com.ncorti.kotlin.template", "com.github.$owner.$name")
+            it.replace("com.technogeeks.statussaver", "com.github.$owner.$name")
         }
     }
     srcDirectories().forEach {

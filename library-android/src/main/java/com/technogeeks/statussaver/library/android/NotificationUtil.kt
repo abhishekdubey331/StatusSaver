@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.template.library.android
+package com.technogeeks.statussaver.library.android
 
 import android.app.Notification
 import android.app.NotificationChannel

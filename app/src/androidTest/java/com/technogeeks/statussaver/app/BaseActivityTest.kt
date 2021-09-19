@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.template.app
+package com.technogeeks.statussaver.app
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -15,10 +15,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class BaseActivityTest {
 
     @get:Rule
-    val rule = activityScenarioRule<MainActivity>()
+    val rule = activityScenarioRule<BaseActivity>()
 
     @Test
     fun typeANumber_resultIsDisplayed() {
