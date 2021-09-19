@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-android")
 }
 
 android {
@@ -39,19 +40,6 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
-
-    // Use this block to configure different flavors
-//    flavorDimensions("version")
-//    productFlavors {
-//        create("full") {
-//            dimension = "version"
-//            applicationIdSuffix = ".full"
-//        }
-//        create("demo") {
-//            dimension = "version"
-//            applicationIdSuffix = ".demo"
-//        }
-//    }
 }
 
 dependencies {
@@ -63,6 +51,9 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
+    implementation("android.arch.navigation:navigation-ui-ktx:1.0.0")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     testImplementation(TestingLib.JUNIT)
 

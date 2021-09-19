@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">Kotlin Android Template</string>
+    <string name="app_name">Status Saver</string>
     <string name="title">This is just a template</string>
     <string name="description">You can compute a factorial using the library-kotlin module. The result will be also shown in a notification using the library-android module.</string>
     <string name="factorial_hint">Insert a number to compute his factorial</string>
     <string name="compute">Compute</string>
     <string name="notification_title">The Result is:</string>
+    <string name="statuses">Status</string>
+    <string name="images">Images</string>
+    <string name="videos">Videos</string>
+    <string name="downloads">Downloaded</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_press_again">Please click BACK again to exit</string>
 </resources>

@@ -16,7 +16,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("StatusSaver")
 
 include(
     "app",
