@@ -54,6 +54,8 @@ dependencies {
     implementation(SupportLibs.ANDROID_NAV_ARCH_FRG_KTX)
     implementation(SupportLibs.ANDROID_NAV_ARCH_UI_KTX)
     implementation(SupportLibs.ANDROID_NAV_LEGACY_SUPP)
+    implementation("com.github.fondesa:kpermissions:3.2.1")
+    implementation("com.github.Zhuinden:fragmentviewbindingdelegate-kt:1.0.0")
 
     testImplementation(TestingLib.JUNIT)
 

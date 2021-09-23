@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <FrameLayout
         android:id="@+id/imagesTabContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <fragment
-            android:id="@+id/homeTab"
+            android:id="@+id/imagesTab"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,7 +27,7 @@
         android:visibility="invisible">
 
         <fragment
-            android:id="@+id/dashboardTab"
+            android:id="@+id/videosTab"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
 
         <fragment
-            android:id="@+id/notificationsTab"
+            android:id="@+id/downloadTab"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

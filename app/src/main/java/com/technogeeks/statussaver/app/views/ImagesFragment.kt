@@ -1,60 +1,51 @@
 package com.technogeeks.statussaver.app.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.technogeeks.statussaver.app.R
+import com.technogeeks.statussaver.app.adapter.ImagesAdapter
+import com.technogeeks.statussaver.app.base.BaseFragment
+import com.technogeeks.statussaver.app.databinding.FragmentImagesBinding
+import com.technogeeks.statussaver.app.extensions.isImage
+import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import java.io.File
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ImagesFragment : BaseFragment(R.layout.fragment_images) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ImagesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ImagesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var imagesAdapter: ImagesAdapter
+    private val binding by viewBinding(FragmentImagesBinding::bind)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getStatus()
+    }
+
+    private fun getStatus() {
+        when {
+            FileManagerUtil.STATUS_DIRECTORY.exists() -> {
+                val imageFiles =
+                    FileManagerUtil.STATUS_DIRECTORY.listFiles()
+                        ?.filter { s -> s.isImage() }
+                setUpRecyclerView(imageFiles ?: listOf())
+            }
+            FileManagerUtil.STATUS_DIRECTORY_NEW.exists() -> {
+                val imageFiles =
+                    FileManagerUtil.STATUS_DIRECTORY.listFiles()
+                        ?.filter { s -> s.isImage() }
+                setUpRecyclerView(imageFiles ?: listOf())
+            }
+            else -> showToast("Nothing Found")
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_images, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ImagesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ImagesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setUpRecyclerView(list: List<File>) {
+        imagesAdapter = ImagesAdapter(requireContext(), list)
+        val staggeredGridLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        binding.imagesRecycler.layoutManager = staggeredGridLayoutManager
+        binding.imagesRecycler.adapter = imagesAdapter
     }
 }
