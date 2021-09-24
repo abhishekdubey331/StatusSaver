@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.technogeeks.statussaver.app.R
+import com.technogeeks.statussaver.app.extensions.isGIF
+import com.technogeeks.statussaver.app.extensions.isImage
 import java.io.File
 
 class ImagesAdapter(private val context: Context, private val imageList: List<File>) :
@@ -24,7 +27,23 @@ class ImagesAdapter(private val context: Context, private val imageList: List<Fi
     override fun getItemCount(): Int = imageList.size
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val myBitmap: Bitmap = BitmapFactory.decodeFile(imageList[position].absolutePath)
-        holder.imageView.setImageBitmap(myBitmap)
+        val file = imageList[position]
+        val imagePath = file.absolutePath
+        val myBitmap: Bitmap = BitmapFactory.decodeFile(imagePath)
+        when {
+            file.isImage() -> {
+                holder.imageView.setImageBitmap(myBitmap)
+            }
+            file.isGIF() -> {
+                Glide.with(context)
+                    .load(myBitmap)
+                    .asGif()
+                    .error(R.drawable.ic_launcher_background)
+                    .into(holder.imageView)
+            }
+            else -> {
+                holder.imageView.setImageBitmap(myBitmap)
+            }
+        }
     }
 }

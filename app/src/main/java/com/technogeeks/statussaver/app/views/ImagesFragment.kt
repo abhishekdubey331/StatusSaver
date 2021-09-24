@@ -7,6 +7,7 @@ import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.adapter.ImagesAdapter
 import com.technogeeks.statussaver.app.base.BaseFragment
 import com.technogeeks.statussaver.app.databinding.FragmentImagesBinding
+import com.technogeeks.statussaver.app.extensions.isGIF
 import com.technogeeks.statussaver.app.extensions.isImage
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -27,13 +28,13 @@ class ImagesFragment : BaseFragment(R.layout.fragment_images) {
             FileManagerUtil.STATUS_DIRECTORY.exists() -> {
                 val imageFiles =
                     FileManagerUtil.STATUS_DIRECTORY.listFiles()
-                        ?.filter { s -> s.isImage() }
+                        ?.filter { s -> s.isImage() || s.isGIF() }
                 setUpRecyclerView(imageFiles ?: listOf())
             }
             FileManagerUtil.STATUS_DIRECTORY_NEW.exists() -> {
                 val imageFiles =
                     FileManagerUtil.STATUS_DIRECTORY.listFiles()
-                        ?.filter { s -> s.isImage() }
+                        ?.filter { s -> s.isImage() || s.isGIF() }
                 setUpRecyclerView(imageFiles ?: listOf())
             }
             else -> showToast("Nothing Found")

@@ -8,3 +8,5 @@ fun File.isVideo() = this.name.contains(".mp4")
 fun File.isNonMedia() = this.name.contains(".nomedia")
 
 fun File.isImage() = this.name.contains(".jpg")
+
+fun File.isGIF() = this.name.contains(".gif")
