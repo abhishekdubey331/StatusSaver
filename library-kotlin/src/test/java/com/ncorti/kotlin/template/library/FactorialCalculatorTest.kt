@@ -1,6 +1,6 @@
 package com.technogeeks.statussaver.library
 
-import com.technogeeks.statussaver.library.FactorialCalculator.computeFactorial
+import com.technogeeks.statussaver.kotlin.library.FactorialCalculator.computeFactorial
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test

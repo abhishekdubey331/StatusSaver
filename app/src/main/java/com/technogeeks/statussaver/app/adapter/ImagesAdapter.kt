@@ -24,11 +24,7 @@ class ImagesAdapter(private val context: Context, private val imageList: List<Fi
     override fun getItemCount(): Int = imageList.size
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        if (imageList[position].name.contains(".jpg")) {
-            if (imageList[position].exists()) {
-                val myBitmap: Bitmap = BitmapFactory.decodeFile(imageList[position].absolutePath)
-                holder.imageView.setImageBitmap(myBitmap)
-            }
-        }
+        val myBitmap: Bitmap = BitmapFactory.decodeFile(imageList[position].absolutePath)
+        holder.imageView.setImageBitmap(myBitmap)
     }
 }

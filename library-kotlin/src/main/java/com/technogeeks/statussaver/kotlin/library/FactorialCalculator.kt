@@ -1,4 +1,4 @@
-package com.technogeeks.statussaver.library
+package com.technogeeks.statussaver.kotlin.library
 
 object FactorialCalculator {
 

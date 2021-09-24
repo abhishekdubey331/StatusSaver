@@ -16,6 +16,7 @@ import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.fondesa.kpermissions.extension.send
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.technogeeks.statussaver.app.R
+import com.technogeeks.statussaver.library.android.StatusApp
 import com.technogeeks.statussaver.app.databinding.ActivityBaseBinding
 import com.technogeeks.statussaver.app.navigation.TabManager
 
