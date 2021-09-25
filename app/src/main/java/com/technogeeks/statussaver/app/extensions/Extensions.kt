@@ -2,10 +2,7 @@ package com.technogeeks.statussaver.app.extensions
 
 import java.io.File
 
-
 fun File.isVideo() = this.name.contains(".mp4")
-
-fun File.isNonMedia() = this.name.contains(".nomedia")
 
 fun File.isImage() = this.name.contains(".jpg")
 

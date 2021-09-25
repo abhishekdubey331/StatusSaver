@@ -19,7 +19,7 @@ class VideoAdapter(private val context: Context, private val imageList: List<Fil
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder =
-        ImageViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_image, parent, false))
+        ImageViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_video, parent, false))
 
     override fun getItemCount(): Int = imageList.size
 
