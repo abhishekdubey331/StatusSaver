@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:maxHeight="250dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -37,6 +36,25 @@
                 android:layout_height="@dimen/dimen_48"
                 android:padding="@dimen/base_grid_size"
                 app:srcCompat="@drawable/ic_download" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:background="@drawable/gradient"
+            android:gravity="end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fileTypeTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorRed"
+                android:padding="@dimen/dimen_2"
+                android:textSize="@dimen/dimen_text_12"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView

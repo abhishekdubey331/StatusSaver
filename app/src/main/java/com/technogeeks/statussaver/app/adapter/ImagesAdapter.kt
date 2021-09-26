@@ -3,16 +3,16 @@ package com.technogeeks.statussaver.app.adapter
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.technogeeks.statussaver.app.R
-import com.technogeeks.statussaver.app.extensions.isGIF
 import com.technogeeks.statussaver.app.extensions.isImage
+import com.technogeeks.statussaver.app.extensions.loadImage
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import java.io.File
 
@@ -35,14 +35,7 @@ class ImagesAdapter(private val context: Context, private val imageList: List<Fi
         val myBitmap: Bitmap = BitmapFactory.decodeFile(imagePath)
         when {
             file.isImage() -> {
-                holder.imageView.setImageBitmap(myBitmap)
-            }
-            file.isGIF() -> {
-                Glide.with(context)
-                    .load(myBitmap)
-                    .asGif()
-                    .error(R.drawable.ic_launcher_background)
-                    .into(holder.imageView)
+                holder.imageView.loadImage(Uri.fromFile(file))
             }
             else -> {
                 holder.imageView.setImageBitmap(myBitmap)
@@ -52,7 +45,6 @@ class ImagesAdapter(private val context: Context, private val imageList: List<Fi
             FileManagerUtil.saveImage(
                 context,
                 myBitmap,
-                context.getString(R.string.app_name),
                 file.name
             ) {
                 it?.let { holder.downloadButton.setImageResource(R.drawable.ic_downloaded_file) }

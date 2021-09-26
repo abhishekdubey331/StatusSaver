@@ -7,8 +7,6 @@ import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.adapter.DownloadsAdapter
 import com.technogeeks.statussaver.app.base.BaseFragment
 import com.technogeeks.statussaver.app.databinding.FragmentDownloadsBinding
-import com.technogeeks.statussaver.app.extensions.isGIF
-import com.technogeeks.statussaver.app.extensions.isImage
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import java.io.File
@@ -27,9 +25,8 @@ class DownloadsFragment : BaseFragment(R.layout.fragment_downloads) {
         when {
             FileManagerUtil.DOWNLOADS_DIRECTORY.exists() -> {
                 val imageFiles =
-                    FileManagerUtil.DOWNLOADS_DIRECTORY.listFiles()
-                        ?.filter { s -> s.isImage() || s.isGIF() }
-                setUpRecyclerView(imageFiles ?: listOf())
+                    FileManagerUtil.DOWNLOADS_DIRECTORY.listFiles()?.toList() ?: listOf()
+                setUpRecyclerView(imageFiles)
             }
             else -> showToast("Nothing Found")
         }

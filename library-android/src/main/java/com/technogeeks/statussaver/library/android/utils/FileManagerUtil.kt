@@ -9,12 +9,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.annotation.NonNull
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
-
+import com.technogeeks.statussaver.library.android.R
+import java.io.*
 
 object FileManagerUtil {
 
@@ -43,7 +41,6 @@ object FileManagerUtil {
     fun saveImage(
         context: Context,
         bitmap: Bitmap,
-        @NonNull folderName: String,
         @NonNull fileName: String,
         listener: (Uri?) -> Unit
     ) {
@@ -57,7 +54,7 @@ object FileManagerUtil {
                 contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
                 contentValues.put(
                     MediaStore.MediaColumns.RELATIVE_PATH,
-                    Environment.DIRECTORY_PICTURES + File.separator + folderName
+                    Environment.DIRECTORY_PICTURES + File.separator + context.getString(R.string.app_name)
                 )
                 imageUri =
                     resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
@@ -67,10 +64,10 @@ object FileManagerUtil {
                 val imagesDir = File(
                     Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES
-                    ).toString() + File.separator + folderName
+                    ).toString() + File.separator + context.getString(R.string.app_name)
                 )
                 if (!imagesDir.exists()) imagesDir.mkdir()
-                imageFile = File(imagesDir, "$fileName.png")
+                imageFile = File(imagesDir, fileName)
                 fos = FileOutputStream(imageFile)
             }
             if (!bitmap.compress(
@@ -88,5 +85,27 @@ object FileManagerUtil {
             imageUri = Uri.fromFile(imageFile)
         }
         listener.invoke(imageUri)
+    }
+
+    fun copyFile(source: File, context: Context, listener: (Uri?) -> Unit) {
+        if (!isFileDownloaded(source.name).exists()) {
+            val inputStream: InputStream = FileInputStream(source)
+            val outputStream: OutputStream = FileOutputStream(isFileDownloaded(source.name))
+            val buf = ByteArray(1024)
+            var len: Int = inputStream.read(buf)
+            Thread {
+                while (len > 0) {
+                    outputStream.write(buf, 0, len)
+                    len = inputStream.read(buf)
+                }
+                inputStream.close()
+                outputStream.close()
+                println("Write operation done");
+            }.start()
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Already exits", Toast.LENGTH_SHORT).show()
+        }
+        listener.invoke(Uri.EMPTY)
     }
 }
