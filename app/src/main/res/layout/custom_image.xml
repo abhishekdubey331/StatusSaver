@@ -32,15 +32,15 @@
             android:gravity="end">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/video_play_button"
+                android:id="@+id/downloadButton"
                 android:layout_width="@dimen/dimen_48"
                 android:layout_height="@dimen/dimen_48"
                 android:padding="@dimen/base_grid_size"
-                android:visibility="gone"
                 app:srcCompat="@drawable/ic_download" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/video_play_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
