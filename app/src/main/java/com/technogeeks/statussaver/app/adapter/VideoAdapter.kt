@@ -29,9 +29,9 @@ class VideoAdapter(private val context: Context, private val imageList: List<Fil
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val file = imageList[position]
+        holder.videoPlayButton.makeVisible()
         Glide.with(context)
             .load(Uri.fromFile(file))
             .into(holder.imageView)
-        holder.videoPlayButton.makeVisible()
     }
 }
