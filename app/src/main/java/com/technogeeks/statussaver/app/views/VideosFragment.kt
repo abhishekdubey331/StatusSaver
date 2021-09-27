@@ -6,16 +6,17 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.adapter.VideoAdapter
 import com.technogeeks.statussaver.app.base.BaseFragment
-import com.technogeeks.statussaver.app.databinding.FragmentVideosBinding
+import com.technogeeks.statussaver.app.databinding.FragmentImagesBinding
 import com.technogeeks.statussaver.app.extensions.isVideo
+import com.technogeeks.statussaver.app.extensions.makeVisible
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import java.io.File
 
-class VideosFragment : BaseFragment(R.layout.fragment_videos) {
+class VideosFragment : BaseFragment(R.layout.fragment_images) {
 
     private lateinit var videoAdapter: VideoAdapter
-    private val binding by viewBinding(FragmentVideosBinding::bind)
+    private val binding by viewBinding(FragmentImagesBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,18 +26,26 @@ class VideosFragment : BaseFragment(R.layout.fragment_videos) {
     private fun getStatus() {
         when {
             FileManagerUtil.STATUS_DIRECTORY.exists() -> {
-                val imageFiles =
+                val videoFiles =
                     FileManagerUtil.STATUS_DIRECTORY.listFiles()
                         ?.filter { s -> s.isVideo() }
-                setUpRecyclerView(imageFiles ?: listOf())
+                handleData(videoFiles)
             }
             FileManagerUtil.STATUS_DIRECTORY_NEW.exists() -> {
-                val imageFiles =
+                val videoFiles =
                     FileManagerUtil.STATUS_DIRECTORY.listFiles()
                         ?.filter { s -> s.isVideo() }
-                setUpRecyclerView(imageFiles ?: listOf())
+                handleData(videoFiles)
             }
-            else -> showToast("Nothing Found")
+            else -> binding.emptyUi.makeVisible()
+        }
+    }
+
+    private fun handleData(list: List<File>?) {
+        if (list.isNullOrEmpty()) {
+            binding.emptyUi.makeVisible()
+        } else {
+            setUpRecyclerView(list)
         }
     }
 

@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.fondesa.kpermissions.allGranted
@@ -16,7 +18,6 @@ import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.fondesa.kpermissions.extension.send
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.technogeeks.statussaver.app.R
-import com.technogeeks.statussaver.library.android.StatusApp
 import com.technogeeks.statussaver.app.databinding.ActivityBaseBinding
 import com.technogeeks.statussaver.app.navigation.TabManager
 
@@ -27,6 +28,11 @@ open class BaseActivity : AppCompatActivity(),
     private var doubleBackToExitPressedOnce = false
     lateinit var binding: ActivityBaseBinding
     private lateinit var navController: NavController
+    private val loadDownloadedFiles = MutableLiveData<Boolean>()
+
+    fun loadDownloadedFiles(): LiveData<Boolean> {
+        return loadDownloadedFiles
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +81,7 @@ open class BaseActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        loadDownloadedFiles.value = menuItem.itemId == R.id.navigation_downloads
         tabManager.switchTab(menuItem.itemId)
         return true
     }
@@ -83,6 +90,8 @@ open class BaseActivity : AppCompatActivity(),
         permissionsBuilder(Manifest.permission.WRITE_EXTERNAL_STORAGE).build().send { result ->
             if (result.allGranted()) {
                 // All the permissions are granted.
+            } else {
+                showToast("Permissions not granted.")
             }
         }
     }

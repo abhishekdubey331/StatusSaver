@@ -58,6 +58,7 @@ dependencies {
     implementation("com.github.Zhuinden:fragmentviewbindingdelegate-kt:1.0.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("com.airbnb.android:lottie:4.1.0")
 
 
     testImplementation(TestingLib.JUNIT)
