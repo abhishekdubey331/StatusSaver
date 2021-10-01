@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="base_grid_size">8dp</dimen>
-    <dimen name="doub_grid_size">16dp</dimen>
-    <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
     <dimen name="dimen_text_12">12sp</dimen>

@@ -32,8 +32,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/downloadButton"
-                android:layout_width="@dimen/dimen_48"
-                android:layout_height="@dimen/dimen_48"
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/dimen_40"
                 android:padding="@dimen/base_grid_size"
                 app:srcCompat="@drawable/ic_download" />
         </LinearLayout>

@@ -2,6 +2,7 @@ package com.technogeeks.statussaver.app.extensions
 
 import android.net.Uri
 import android.view.View
+import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -22,6 +23,12 @@ fun View.makeVisible() {
 
 fun AppCompatImageView.loadImage(uri: Uri) {
     Glide.with(StatusApp.getContext()).load(uri)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(this)
+}
+
+fun AppCompatImageView.loadImage(imageRes: Int) {
+    Glide.with(StatusApp.getContext()).load(imageRes)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }
