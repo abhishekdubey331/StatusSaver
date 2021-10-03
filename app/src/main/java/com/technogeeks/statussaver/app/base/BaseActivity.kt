@@ -17,7 +17,9 @@ import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.fondesa.kpermissions.extension.send
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pixplicity.easyprefs.library.Prefs
 import com.technogeeks.statussaver.app.R
+import com.technogeeks.statussaver.app.activity.IntroActivity
 import com.technogeeks.statussaver.app.databinding.ActivityBaseBinding
 import com.technogeeks.statussaver.app.navigation.TabManager
 
@@ -36,6 +38,9 @@ open class BaseActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Prefs.getBoolean("intro_shown", false).not()) {
+            startActivity(Intent(this, IntroActivity::class.java))
+        }
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(this)

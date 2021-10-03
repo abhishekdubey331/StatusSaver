@@ -1,2 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.technogeeks.statussaver.library.android" />
+    package="com.technogeeks.statussaver.library.android">
+
+    <application>
+        <activity
+            android:name="com.technogeeks.statussaver.library.android.com.technogeeks.statussaver.app.activity.IntroActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>

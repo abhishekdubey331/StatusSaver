@@ -62,7 +62,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.airbnb.android:lottie:4.1.0")
-
+    implementation( "com.pixplicity.easyprefs:EasyPrefs:1.10.0")
 
     testImplementation(TestingLib.JUNIT)
 

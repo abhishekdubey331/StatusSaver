@@ -3,4 +3,8 @@
     <string name="channel_name">Default</string>
     <string name="channel_description">Default notifications for this app</string>
     <string name="app_name">Status Saver</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="plan_your_trip">Plan Your Trip</string>
+    <string name="choose_your_destination_plan_your_trip_npick_the_best_place_to_your_holiday">Choose your destination, plan your trip. \nPick the best place to your holiday</string>
 </resources>

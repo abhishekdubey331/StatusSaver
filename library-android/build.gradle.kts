@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("maven-publish")
+    id("kotlin-android")
     publish
 }
 
@@ -24,6 +25,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -47,6 +51,9 @@ dependencies {
 
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
 
     testImplementation(TestingLib.JUNIT)
 
