@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.StatusApp
 import java.io.File
 
@@ -22,12 +23,14 @@ fun View.makeVisible() {
 
 fun AppCompatImageView.loadImage(uri: Uri) {
     Glide.with(StatusApp.getContext()).load(uri)
+        .placeholder(R.drawable.placeholder)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }
 
 fun AppCompatImageView.loadImage(imageRes: Int) {
     Glide.with(StatusApp.getContext()).load(imageRes)
+        .placeholder(R.drawable.placeholder)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }
@@ -35,6 +38,7 @@ fun AppCompatImageView.loadImage(imageRes: Int) {
 fun AppCompatImageView.loadVideoFrame(file: File) {
     Glide.with(context)
         .load(file)
+        .placeholder(R.drawable.placeholder)
         .into(this)
 }
 

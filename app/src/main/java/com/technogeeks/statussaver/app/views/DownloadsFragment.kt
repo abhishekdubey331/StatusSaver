@@ -8,6 +8,7 @@ import com.technogeeks.statussaver.app.adapter.DownloadsAdapter
 import com.technogeeks.statussaver.app.base.BaseActivity
 import com.technogeeks.statussaver.app.base.BaseFragment
 import com.technogeeks.statussaver.app.databinding.FragmentImagesBinding
+import com.technogeeks.statussaver.app.extensions.gone
 import com.technogeeks.statussaver.app.extensions.makeVisible
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -22,8 +23,13 @@ class DownloadsFragment : BaseFragment(R.layout.fragment_images) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getStatus()
+        reloadDataSetObserver()
+    }
+
+    private fun reloadDataSetObserver() {
         if (activity is BaseActivity) {
-            (activity as BaseActivity).loadDownloadedFiles().observe(viewLifecycleOwner, {
+            (activity as BaseActivity).resetData().observe(viewLifecycleOwner, {
                 if (it) {
                     getStatus()
                 }
@@ -45,6 +51,7 @@ class DownloadsFragment : BaseFragment(R.layout.fragment_images) {
         if (list.isNotEmpty()) {
             binding.emptyUi.makeVisible()
         } else {
+            binding.emptyUi.gone()
             setUpRecyclerView(list)
         }
     }
@@ -53,7 +60,8 @@ class DownloadsFragment : BaseFragment(R.layout.fragment_images) {
         imagesAdapter = DownloadsAdapter(requireContext(), list)
         val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(SPAN_SIZE, StaggeredGridLayoutManager.VERTICAL)
-        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        staggeredGridLayoutManager.gapStrategy =
+            StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
         binding.imagesRecycler.layoutManager = staggeredGridLayoutManager
         binding.imagesRecycler.adapter = imagesAdapter
     }

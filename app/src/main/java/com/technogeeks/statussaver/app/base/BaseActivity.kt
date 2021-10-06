@@ -30,17 +30,14 @@ open class BaseActivity : AppCompatActivity(),
     private var doubleBackToExitPressedOnce = false
     lateinit var binding: ActivityBaseBinding
     private lateinit var navController: NavController
-    private val loadDownloadedFiles = MutableLiveData<Boolean>()
+    private val resetData = MutableLiveData<Boolean>()
 
-    fun loadDownloadedFiles(): LiveData<Boolean> {
-        return loadDownloadedFiles
+    fun resetData(): LiveData<Boolean> {
+        return resetData
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Prefs.getBoolean("intro_shown", false).not()) {
-            startActivity(Intent(this, IntroActivity::class.java))
-        }
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(this)
@@ -86,7 +83,7 @@ open class BaseActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        loadDownloadedFiles.value = menuItem.itemId == R.id.navigation_downloads
+        resetData.value = menuItem.itemId == R.id.navigation_downloads
         tabManager.switchTab(menuItem.itemId)
         return true
     }
@@ -94,7 +91,7 @@ open class BaseActivity : AppCompatActivity(),
     private fun requestPermission() {
         permissionsBuilder(Manifest.permission.WRITE_EXTERNAL_STORAGE).build().send { result ->
             if (result.allGranted()) {
-                // All the permissions are granted.
+                resetData.value = true
             } else {
                 showToast("Permissions not granted.")
             }

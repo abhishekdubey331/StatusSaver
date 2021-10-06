@@ -1,13 +1,14 @@
 package com.technogeeks.statussaver.app.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.pixplicity.easyprefs.library.Prefs
+import com.technogeeks.statussaver.app.base.BaseActivity
 import com.technogeeks.statussaver.library.android.R
 import com.technogeeks.statussaver.library.android.databinding.ActivityIntroBinding
 import com.technogeeks.statussaver.library.android.intro.IntroViewPagerAdapter
@@ -58,10 +59,16 @@ class IntroActivity : AppCompatActivity() {
 
         //Button Next
         binding.btnNext.setOnClickListener {
-            binding.screenViewpager.setCurrentItem(
-                binding.screenViewpager.currentItem.plus(1),
-                true
-            )
+            if (binding.screenViewpager.currentItem == 2) {
+                Prefs.putBoolean("intro_shown", true)
+                startActivity(Intent(this, BaseActivity::class.java))
+                finish()
+            } else {
+                binding.screenViewpager.setCurrentItem(
+                    binding.screenViewpager.currentItem.plus(1),
+                    true
+                )
+            }
         }
         binding.tabIndicator.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -73,20 +80,9 @@ class IntroActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-
-        //Button Get Started
-        binding.btnGetStarted.setOnClickListener {
-            finish()
-        }
     }
 
     private fun loadLastScreen() {
-        binding.linearLayoutNext.visibility = View.INVISIBLE
-        binding.linearLayoutGetStarted.visibility = View.VISIBLE
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Prefs.putBoolean("intro_shown", true)
+        binding.btnNext.text = getString(com.technogeeks.statussaver.app.R.string.get_started)
     }
 }

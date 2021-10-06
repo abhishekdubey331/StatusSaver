@@ -55,29 +55,4 @@
             android:textSize="17sp" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/linear_layout_get_started"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="bottom"
-        android:background="#fff"
-        android:elevation="12dp"
-        android:gravity="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/btn_get_started"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/rounded"
-            android:text="@string/get_started"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="17sp" />
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

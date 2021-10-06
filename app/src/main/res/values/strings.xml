@@ -7,4 +7,5 @@
     <string name="back_press_again">Please click BACK again to exit</string>
     <string name="image">Image</string>
     <string name="video">Video</string>
+    <string name="get_started">Get Started</string>
 </resources>

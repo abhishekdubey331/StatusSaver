@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.pixplicity.easyprefs.library.Prefs
 import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.base.BaseActivity
 import com.technogeeks.statussaver.app.databinding.ActivitySplashBinding
@@ -21,9 +22,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.logoImv.loadImage(R.drawable.splash_logo)
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, BaseActivity::class.java))
+            if (Prefs.getBoolean("intro_shown", false).not()) {
+                startActivity(Intent(this, IntroActivity::class.java))
+            } else {
+                startActivity(Intent(this, BaseActivity::class.java))
+            }
             finish()
         }, SPLASH_TIME)
     }
