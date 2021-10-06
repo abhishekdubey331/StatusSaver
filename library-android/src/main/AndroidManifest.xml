@@ -3,9 +3,7 @@
     package="com.technogeeks.statussaver.library.android">
 
     <application>
-        <activity
-            android:name="com.technogeeks.statussaver.library.android.com.technogeeks.statussaver.app.activity.IntroActivity"
-            android:exported="true" />
+
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@ class ImagesFragment : BaseFragment(R.layout.fragment_images) {
             }
             FileManagerUtil.STATUS_DIRECTORY_NEW.exists() -> {
                 val imageFiles =
-                    FileManagerUtil.STATUS_DIRECTORY.listFiles()
+                    FileManagerUtil.STATUS_DIRECTORY_NEW.listFiles()
                         ?.filter { s -> s.isImage() }
                 handleData(imageFiles)
             }
@@ -56,9 +56,11 @@ class ImagesFragment : BaseFragment(R.layout.fragment_images) {
 
     private fun handleData(list: List<File>?) {
         if (list.isNullOrEmpty()) {
+            binding.tvNoContent.makeVisible()
             binding.emptyUi.makeVisible()
         } else {
             binding.emptyUi.gone()
+            binding.tvNoContent.gone()
             setUpRecyclerView(list)
         }
     }

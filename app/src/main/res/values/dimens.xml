@@ -4,4 +4,6 @@
     <dimen name="dimen_40">40dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
     <dimen name="dimen_text_12">12sp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_text_16">16sp</dimen>
 </resources>

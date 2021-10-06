@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#f2f2f2"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f2f2f2">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/images_recycler"
@@ -16,12 +16,22 @@
         android:id="@+id/emptyUi"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:visibility="gone"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:visibility="gone"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/empty"
         app:lottie_repeatMode="reverse" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_no_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/emptyUi"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:textSize="@dimen/dimen_text_16"
+        android:text="@string/no_content_available" />
 
 </RelativeLayout>

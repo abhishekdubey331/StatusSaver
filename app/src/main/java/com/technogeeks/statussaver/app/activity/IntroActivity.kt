@@ -2,8 +2,6 @@ package com.technogeeks.statussaver.app.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -20,33 +18,29 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        supportActionBar?.hide()
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val mList: MutableList<ScreenItem> = ArrayList()
         mList.add(
             ScreenItem(
-                "Plan Your Trip",
-                "Choose your destination, plan your trip.\nPick the best place to your holiday",
-                R.drawable.library_notification_icon
+                "Open WhatsApp",
+                "Open WhatsApp and view the statuses you wish to download.",
+                R.drawable.whatsapp
             )
         )
         mList.add(
             ScreenItem(
-                "Select the Date",
-                "Select the day, book your ticket. We give\nthe best price for you",
-                R.drawable.library_notification_icon
+                "Ready To Download",
+                "Now you can download the status from images/videos screen by clicking download icon.",
+                R.drawable.statuses
             )
         )
         mList.add(
             ScreenItem(
-                "Enjoy Your Trip",
-                "Enjoy your holiday! Take a photo, share to\nthe world and tag me",
-                R.drawable.library_notification_icon
+                "Storage Permission",
+                "Please allow storage permission on next screen. This is required to download & save the status to your device.",
+                R.drawable.download
             )
         )
 
@@ -74,6 +68,8 @@ class IntroActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 if (tab.position == mList.size - 1) {
                     loadLastScreen()
+                } else {
+                    binding.btnNext.text = getString(R.string.next)
                 }
             }
 

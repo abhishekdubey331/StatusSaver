@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.extensions.isImage
 import com.technogeeks.statussaver.app.extensions.loadImage
+import com.technogeeks.statussaver.app.extensions.openImageInGallery
+import com.technogeeks.statussaver.app.extensions.playVideoInGallery
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import java.io.File
 
@@ -41,12 +43,21 @@ class ImagesAdapter(private val context: Context, private val imageList: List<Fi
             }
         }
         holder.downloadButton.setOnClickListener {
-            FileManagerUtil.saveImage(
-                context,
-                myBitmap,
-                file.name
-            ) {
-                it?.let { holder.downloadButton.setImageResource(R.drawable.ic_downloaded_file) }
+            FileManagerUtil
+                .saveImage(context, myBitmap, file.name) {
+                    it?.let {
+                        holder
+                            .downloadButton
+                            .setImageResource(R.drawable.ic_downloaded_file)
+                    }
+                }
+        }
+        holder.imageView.setOnClickListener {
+            val fileData = imageList[holder.adapterPosition]
+            if (fileData.isImage()) {
+                imageList[holder.adapterPosition].openImageInGallery(context)
+            } else {
+                imageList[holder.adapterPosition].playVideoInGallery(context)
             }
         }
         if (FileManagerUtil.isFileDownloaded(fileName = file.name).exists()) {

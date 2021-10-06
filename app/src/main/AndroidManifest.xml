@@ -8,6 +8,8 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:name=".StatusApp"
@@ -37,8 +39,7 @@
 
         <activity
             android:name=".activity.IntroActivity"
-            android:exported="true"
-            android:theme="@style/SplashTheme" />
+            android:exported="true" />
 
     </application>
 

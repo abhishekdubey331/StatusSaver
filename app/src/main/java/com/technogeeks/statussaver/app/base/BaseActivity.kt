@@ -3,8 +3,12 @@ package com.technogeeks.statussaver.app.base
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
+import android.provider.Settings
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +21,7 @@ import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.fondesa.kpermissions.extension.send
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.pixplicity.easyprefs.library.Prefs
 import com.technogeeks.statussaver.app.R
-import com.technogeeks.statussaver.app.activity.IntroActivity
 import com.technogeeks.statussaver.app.databinding.ActivityBaseBinding
 import com.technogeeks.statussaver.app.navigation.TabManager
 
@@ -47,8 +49,17 @@ open class BaseActivity : AppCompatActivity(),
         if (savedInstanceState == null) {
             tabManager.currentController = tabManager.navImagesController
         }
-        if (!isReadStorageAllowed()) {
-            requestPermission()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager().not()) {
+                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                val uri: Uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+        } else {
+            if (!isReadStorageAllowed()) {
+                requestPermission()
+            }
         }
     }
 
@@ -102,5 +113,10 @@ open class BaseActivity : AppCompatActivity(),
         if (reason == null) return
         Toast.makeText(applicationContext, reason, Toast.LENGTH_LONG)
             .show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resetData.value = true
     }
 }

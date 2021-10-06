@@ -1,6 +1,9 @@
 package com.technogeeks.statussaver.app.extensions
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
+import android.os.StrictMode
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
@@ -12,6 +15,26 @@ import java.io.File
 fun File.isVideo() = this.name.contains(".mp4")
 
 fun File.isImage() = this.name.contains(".jpg")
+
+fun File.openImageInGallery(context: Context) {
+    val builder: StrictMode.VmPolicy.Builder = StrictMode.VmPolicy.Builder()
+    StrictMode.setVmPolicy(builder.build())
+    val intent = Intent()
+    intent.action = Intent.ACTION_VIEW
+    val uri = Uri.fromFile(this)
+    intent.setDataAndType(uri, "image/*")
+    context.startActivity(intent)
+}
+
+fun File.playVideoInGallery(context: Context) {
+    val builder: StrictMode.VmPolicy.Builder = StrictMode.VmPolicy.Builder()
+    StrictMode.setVmPolicy(builder.build())
+    val intent = Intent()
+    intent.action = Intent.ACTION_VIEW
+    val uri = Uri.fromFile(this)
+    intent.setDataAndType(uri, "video/*")
+    context.startActivity(intent)
+}
 
 fun View.gone() {
     visibility = View.GONE

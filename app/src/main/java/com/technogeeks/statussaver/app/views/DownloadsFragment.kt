@@ -49,10 +49,12 @@ class DownloadsFragment : BaseFragment(R.layout.fragment_images) {
 
     private fun handleData(list: List<File>) {
         if (list.isNotEmpty()) {
-            binding.emptyUi.makeVisible()
-        } else {
+            binding.tvNoContent.gone()
             binding.emptyUi.gone()
             setUpRecyclerView(list)
+        } else {
+            binding.tvNoContent.makeVisible()
+            binding.emptyUi.makeVisible()
         }
     }
 

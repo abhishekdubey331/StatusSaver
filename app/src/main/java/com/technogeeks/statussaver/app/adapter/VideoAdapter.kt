@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.extensions.loadVideoFrame
 import com.technogeeks.statussaver.app.extensions.makeVisible
+import com.technogeeks.statussaver.app.extensions.playVideoInGallery
 import com.technogeeks.statussaver.library.android.utils.FileManagerUtil
 import java.io.File
 
@@ -39,5 +40,8 @@ class VideoAdapter(private val context: Context, private val imageList: List<Fil
             holder.downloadButton.setOnClickListener(null)
         }
         holder.imageView.loadVideoFrame(file)
+        holder.imageView.setOnClickListener {
+            imageList[holder.adapterPosition].playVideoInGallery(context)
+        }
     }
 }
