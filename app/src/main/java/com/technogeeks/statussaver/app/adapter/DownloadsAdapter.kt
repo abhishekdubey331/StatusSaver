@@ -12,7 +12,6 @@ import com.technogeeks.statussaver.app.R
 import com.technogeeks.statussaver.app.extensions.*
 import java.io.File
 
-
 class DownloadsAdapter(private val context: Context, private val imageList: List<File>) :
     RecyclerView.Adapter<DownloadsAdapter.ImageViewHolder>() {
 
@@ -33,6 +32,7 @@ class DownloadsAdapter(private val context: Context, private val imageList: List
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val file = imageList[position]
         holder.fileTypeTv.makeVisible()
+        holder.shareButton.setImageResource(R.drawable.share_button)
         when {
             file.isImage() -> {
                 holder.imageView.loadImage(Uri.fromFile(file))
@@ -49,15 +49,10 @@ class DownloadsAdapter(private val context: Context, private val imageList: List
         }
 
         holder.imageView.setOnClickListener {
-            val fileData = imageList[holder.adapterPosition]
-            if (fileData.isImage()) {
-                imageList[holder.adapterPosition].openImageInGallery(context)
-            } else {
-                imageList[holder.adapterPosition].playVideoInGallery(context)
-            }
+            imageList[holder.adapterPosition].openFile(context)
         }
         holder.shareButton.setOnClickListener {
-
+            file.shareFile(context)
         }
     }
 }

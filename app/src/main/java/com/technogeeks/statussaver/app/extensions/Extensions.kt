@@ -16,24 +16,30 @@ fun File.isVideo() = this.name.contains(".mp4")
 
 fun File.isImage() = this.name.contains(".jpg")
 
-fun File.openImageInGallery(context: Context) {
+fun File.openFile(context: Context) {
     val builder: StrictMode.VmPolicy.Builder = StrictMode.VmPolicy.Builder()
     StrictMode.setVmPolicy(builder.build())
     val intent = Intent()
     intent.action = Intent.ACTION_VIEW
     val uri = Uri.fromFile(this)
-    intent.setDataAndType(uri, "image/*")
+    if (this.isImage())
+        intent.setDataAndType(uri, "image/*")
+    else
+        intent.setDataAndType(uri, "video/*")
     context.startActivity(intent)
 }
 
-fun File.playVideoInGallery(context: Context) {
+fun File.shareFile(context: Context) {
     val builder: StrictMode.VmPolicy.Builder = StrictMode.VmPolicy.Builder()
     StrictMode.setVmPolicy(builder.build())
-    val intent = Intent()
-    intent.action = Intent.ACTION_VIEW
     val uri = Uri.fromFile(this)
-    intent.setDataAndType(uri, "video/*")
-    context.startActivity(intent)
+    val share = Intent(Intent.ACTION_SEND)
+    if (this.isImage())
+        share.type = "image/jpeg"
+    else
+        share.type = "video/mp4"
+    share.putExtra(Intent.EXTRA_STREAM, uri);
+    context.startActivity(share)
 }
 
 fun View.gone() {
