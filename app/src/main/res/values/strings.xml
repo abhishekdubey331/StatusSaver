@@ -9,4 +9,10 @@
     <string name="video">Video</string>
     <string name="get_started">Get Started</string>
     <string name="no_content_available" tools:ignore="ExtraTranslation">No content available</string>
+    <string name="open_whats_app">Open WhatsApp</string>
+    <string name="open_whats_app_view_status">Open WhatsApp and view the statuses you wish to download.</string>
+    <string name="ready_to_download">Ready To Download</string>
+    <string name="now_you_can_downlod">Now you can download the status from images/videos screen by clicking download icon.</string>
+    <string name="storage_permission">Storage Permission</string>
+    <string name="please_allow_storage"><![CDATA[Please allow storage permission on next screen. This is required to download & save the status to your device.]]></string>
 </resources>

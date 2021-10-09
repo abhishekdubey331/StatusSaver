@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -62,7 +64,13 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.airbnb.android:lottie:4.1.0")
-    implementation( "com.pixplicity.easyprefs:EasyPrefs:1.10.0")
+    implementation("com.pixplicity.easyprefs:EasyPrefs:1.10.0")
+
+    implementation("com.google.firebase:firebase-core:19.0.2")
+    implementation("com.google.firebase:firebase-messaging:22.0.0")
+    implementation("com.google.firebase:firebase-config:21.0.1")
+    implementation("com.google.firebase:firebase-analytics:19.0.2")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.3")
 
     testImplementation(TestingLib.JUNIT)
 

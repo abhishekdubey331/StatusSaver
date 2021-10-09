@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289308104184",
+    "project_id": "status-saver-77304",
+    "storage_bucket": "status-saver-77304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289308104184:android:b1449b1f9371def3ba320d",
+        "android_client_info": {
+          "package_name": "com.technogeeks.statussaver.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289308104184-gie9m9tam0n8gh683s51u6juqg5u82ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAD8k1BP8dtDQcUUYJwBfuTTGGQO9auwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289308104184-gie9m9tam0n8gh683s51u6juqg5u82ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

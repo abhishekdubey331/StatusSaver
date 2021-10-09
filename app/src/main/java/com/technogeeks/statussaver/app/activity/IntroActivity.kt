@@ -21,40 +21,16 @@ class IntroActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val mList: MutableList<ScreenItem> = ArrayList()
-        mList.add(
-            ScreenItem(
-                "Open WhatsApp",
-                "Open WhatsApp and view the statuses you wish to download.",
-                R.drawable.whatsapp
-            )
-        )
-        mList.add(
-            ScreenItem(
-                "Ready To Download",
-                "Now you can download the status from images/videos screen by clicking download icon.",
-                R.drawable.statuses
-            )
-        )
-        mList.add(
-            ScreenItem(
-                "Storage Permission",
-                "Please allow storage permission on next screen. This is required to download & save the status to your device.",
-                R.drawable.download
-            )
-        )
-
+        val mList = getViewPagerContent()
         //Setup viewPager
         introViewPagerAdapter = IntroViewPagerAdapter(this, mList)
         binding.screenViewpager.adapter = introViewPagerAdapter
-
         //Setup tab indicator
         binding.tabIndicator.setupWithViewPager(binding.screenViewpager)
-
         //Button Next
         binding.btnNext.setOnClickListener {
             if (binding.screenViewpager.currentItem == 2) {
-                Prefs.putBoolean("intro_shown", true)
+                Prefs.putBoolean(INTRO_SHOWN, true)
                 startActivity(Intent(this, BaseActivity::class.java))
                 finish()
             } else {
@@ -76,6 +52,32 @@ class IntroActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+    }
+
+    private fun getViewPagerContent(): MutableList<ScreenItem> {
+        val mList: MutableList<ScreenItem> = ArrayList()
+        mList.add(
+            ScreenItem(
+                getString(com.technogeeks.statussaver.app.R.string.open_whats_app),
+                getString(com.technogeeks.statussaver.app.R.string.open_whats_app_view_status),
+                R.drawable.whatsapp
+            )
+        )
+        mList.add(
+            ScreenItem(
+                getString(com.technogeeks.statussaver.app.R.string.ready_to_download),
+                getString(com.technogeeks.statussaver.app.R.string.now_you_can_downlod),
+                R.drawable.statuses
+            )
+        )
+        mList.add(
+            ScreenItem(
+                getString(com.technogeeks.statussaver.app.R.string.storage_permission),
+                getString(com.technogeeks.statussaver.app.R.string.please_allow_storage),
+                R.drawable.download
+            )
+        )
+        return mList
     }
 
     private fun loadLastScreen() {
