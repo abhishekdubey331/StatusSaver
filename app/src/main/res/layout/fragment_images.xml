@@ -28,6 +28,8 @@
         android:id="@+id/tv_no_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimen_16"
+        android:paddingRight="@dimen/dimen_16"
         android:layout_alignBottom="@id/emptyUi"
         android:gravity="center_horizontal"
         android:visibility="gone"

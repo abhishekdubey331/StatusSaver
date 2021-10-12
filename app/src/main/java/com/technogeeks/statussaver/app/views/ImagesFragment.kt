@@ -1,6 +1,12 @@
 package com.technogeeks.statussaver.app.views
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.technogeeks.statussaver.app.R
@@ -26,6 +32,7 @@ class ImagesFragment : BaseFragment(R.layout.fragment_images) {
         reloadDataSetObserver()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun reloadDataSetObserver() {
         if (activity is BaseActivity) {
             (activity as BaseActivity).resetData().observe(viewLifecycleOwner, {
@@ -33,6 +40,11 @@ class ImagesFragment : BaseFragment(R.layout.fragment_images) {
                     getStatus()
                 }
             })
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.emptyUi.makeVisible()
+            binding.tvNoContent.makeVisible()
+            binding.tvNoContent.text = "${getString(R.string.app_name)} is not available in your region yet. It will be available soon."
         }
     }
 

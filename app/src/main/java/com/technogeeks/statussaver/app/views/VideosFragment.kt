@@ -1,5 +1,6 @@
 package com.technogeeks.statussaver.app.views
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,6 +23,11 @@ class VideosFragment : BaseFragment(R.layout.fragment_images) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getStatus()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.emptyUi.makeVisible()
+            binding.tvNoContent.makeVisible()
+            binding.tvNoContent.text = "${getString(R.string.app_name)} is not available in your region yet. It will be available soon."
+        }
     }
 
     private fun getStatus() {
